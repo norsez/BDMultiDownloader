@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F39E3C41158C65B6001C8285 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39E3C40158C65B6001C8285 /* UIKit.framework */; };
+		F39E3C43158C65B6001C8285 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39E3C42158C65B6001C8285 /* Foundation.framework */; };
+		F39E3C45158C65B6001C8285 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39E3C44158C65B6001C8285 /* CoreGraphics.framework */; };
+		F39E3C4B158C65B6001C8285 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C49158C65B6001C8285 /* InfoPlist.strings */; };
+		F39E3C4D158C65B6001C8285 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C4C158C65B6001C8285 /* main.m */; };
+		F39E3C51158C65B7001C8285 /* BDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C50158C65B6001C8285 /* BDAppDelegate.m */; };
+		F39E3C54158C65B7001C8285 /* BDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C53158C65B7001C8285 /* BDViewController.m */; };
+		F39E3C57158C65B7001C8285 /* BDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C55158C65B7001C8285 /* BDViewController.xib */; };
+		F39E3C61158C7AF1001C8285 /* BDMultiDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C60158C7AF1001C8285 /* BDMultiDownloader.m */; };
+		F39E3C69158C9EF8001C8285 /* BDToastAlert.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C66158C9EF8001C8285 /* BDToastAlert.podspec */; };
+		F39E3C6A158C9EF8001C8285 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C67158C9EF8001C8285 /* LICENSE */; };
+		F39E3C6B158C9EF8001C8285 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C68158C9EF8001C8285 /* README.md */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F39E3C3C158C65B6001C8285 /* BDMultiDownloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDMultiDownloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F39E3C40158C65B6001C8285 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F39E3C42158C65B6001C8285 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F39E3C44158C65B6001C8285 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F39E3C48158C65B6001C8285 /* BDMultiDownloader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BDMultiDownloader-Info.plist"; sourceTree = "<group>"; };
+		F39E3C4A158C65B6001C8285 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F39E3C4C158C65B6001C8285 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F39E3C4E158C65B6001C8285 /* BDMultiDownloader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMultiDownloader-Prefix.pch"; sourceTree = "<group>"; };
+		F39E3C4F158C65B6001C8285 /* BDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDAppDelegate.h; sourceTree = "<group>"; };
+		F39E3C50158C65B6001C8285 /* BDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDAppDelegate.m; sourceTree = "<group>"; };
+		F39E3C52158C65B7001C8285 /* BDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDViewController.h; sourceTree = "<group>"; };
+		F39E3C53158C65B7001C8285 /* BDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDViewController.m; sourceTree = "<group>"; };
+		F39E3C56158C65B7001C8285 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BDViewController.xib; sourceTree = "<group>"; };
+		F39E3C5F158C7AF1001C8285 /* BDMultiDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMultiDownloader.h; sourceTree = "<group>"; };
+		F39E3C60158C7AF1001C8285 /* BDMultiDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMultiDownloader.m; sourceTree = "<group>"; };
+		F39E3C66158C9EF8001C8285 /* BDToastAlert.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BDToastAlert.podspec; path = ../BDToastAlert/BDToastAlert.podspec; sourceTree = "<group>"; };
+		F39E3C67158C9EF8001C8285 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../BDToastAlert/LICENSE; sourceTree = "<group>"; };
+		F39E3C68158C9EF8001C8285 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../BDToastAlert/README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F39E3C39158C65B6001C8285 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F39E3C41158C65B6001C8285 /* UIKit.framework in Frameworks */,
+				F39E3C43158C65B6001C8285 /* Foundation.framework in Frameworks */,
+				F39E3C45158C65B6001C8285 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F39E3C31158C65B6001C8285 = {
+			isa = PBXGroup;
+			children = (
+				F39E3C66158C9EF8001C8285 /* BDToastAlert.podspec */,
+				F39E3C67158C9EF8001C8285 /* LICENSE */,
+				F39E3C68158C9EF8001C8285 /* README.md */,
+				F39E3C5E158C7AF1001C8285 /* classes */,
+				F39E3C46158C65B6001C8285 /* BDMultiDownloader */,
+				F39E3C3F158C65B6001C8285 /* Frameworks */,
+				F39E3C3D158C65B6001C8285 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F39E3C3D158C65B6001C8285 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F39E3C3C158C65B6001C8285 /* BDMultiDownloader.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F39E3C3F158C65B6001C8285 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F39E3C40158C65B6001C8285 /* UIKit.framework */,
+				F39E3C42158C65B6001C8285 /* Foundation.framework */,
+				F39E3C44158C65B6001C8285 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F39E3C46158C65B6001C8285 /* BDMultiDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				F39E3C4F158C65B6001C8285 /* BDAppDelegate.h */,
+				F39E3C50158C65B6001C8285 /* BDAppDelegate.m */,
+				F39E3C52158C65B7001C8285 /* BDViewController.h */,
+				F39E3C53158C65B7001C8285 /* BDViewController.m */,
+				F39E3C55158C65B7001C8285 /* BDViewController.xib */,
+				F39E3C47158C65B6001C8285 /* Supporting Files */,
+			);
+			path = BDMultiDownloader;
+			sourceTree = "<group>";
+		};
+		F39E3C47158C65B6001C8285 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F39E3C48158C65B6001C8285 /* BDMultiDownloader-Info.plist */,
+				F39E3C49158C65B6001C8285 /* InfoPlist.strings */,
+				F39E3C4C158C65B6001C8285 /* main.m */,
+				F39E3C4E158C65B6001C8285 /* BDMultiDownloader-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F39E3C5E158C7AF1001C8285 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				F39E3C5F158C7AF1001C8285 /* BDMultiDownloader.h */,
+				F39E3C60158C7AF1001C8285 /* BDMultiDownloader.m */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F39E3C3B158C65B6001C8285 /* BDMultiDownloader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F39E3C5A158C65B7001C8285 /* Build configuration list for PBXNativeTarget "BDMultiDownloader" */;
+			buildPhases = (
+				F39E3C38158C65B6001C8285 /* Sources */,
+				F39E3C39158C65B6001C8285 /* Frameworks */,
+				F39E3C3A158C65B6001C8285 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BDMultiDownloader;
+			productName = BDMultiDownloader;
+			productReference = F39E3C3C158C65B6001C8285 /* BDMultiDownloader.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F39E3C33158C65B6001C8285 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BD;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Bluedot;
+			};
+			buildConfigurationList = F39E3C36158C65B6001C8285 /* Build configuration list for PBXProject "BDMultiDownloader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F39E3C31158C65B6001C8285;
+			productRefGroup = F39E3C3D158C65B6001C8285 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F39E3C3B158C65B6001C8285 /* BDMultiDownloader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F39E3C3A158C65B6001C8285 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F39E3C4B158C65B6001C8285 /* InfoPlist.strings in Resources */,
+				F39E3C57158C65B7001C8285 /* BDViewController.xib in Resources */,
+				F39E3C69158C9EF8001C8285 /* BDToastAlert.podspec in Resources */,
+				F39E3C6A158C9EF8001C8285 /* LICENSE in Resources */,
+				F39E3C6B158C9EF8001C8285 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F39E3C38158C65B6001C8285 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F39E3C4D158C65B6001C8285 /* main.m in Sources */,
+				F39E3C51158C65B7001C8285 /* BDAppDelegate.m in Sources */,
+				F39E3C54158C65B7001C8285 /* BDViewController.m in Sources */,
+				F39E3C61158C7AF1001C8285 /* BDMultiDownloader.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F39E3C49158C65B6001C8285 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F39E3C4A158C65B6001C8285 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F39E3C55158C65B7001C8285 /* BDViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F39E3C56158C65B7001C8285 /* en */,
+			);
+			name = BDViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F39E3C58158C65B7001C8285 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F39E3C59158C65B7001C8285 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F39E3C5B158C65B7001C8285 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BDMultiDownloader/BDMultiDownloader-Prefix.pch";
+				INFOPLIST_FILE = "BDMultiDownloader/BDMultiDownloader-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F39E3C5C158C65B7001C8285 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BDMultiDownloader/BDMultiDownloader-Prefix.pch";
+				INFOPLIST_FILE = "BDMultiDownloader/BDMultiDownloader-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F39E3C36158C65B6001C8285 /* Build configuration list for PBXProject "BDMultiDownloader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F39E3C58158C65B7001C8285 /* Debug */,
+				F39E3C59158C65B7001C8285 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F39E3C5A158C65B7001C8285 /* Build configuration list for PBXNativeTarget "BDMultiDownloader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F39E3C5B158C65B7001C8285 /* Debug */,
+				F39E3C5C158C65B7001C8285 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F39E3C33158C65B6001C8285 /* Project object */;
+}
