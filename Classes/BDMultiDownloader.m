@@ -204,8 +204,8 @@
     [conn setProgress:0.0];
     [conn setSuggestedFilename:response.suggestedFilename];
     
-    if (self.onDownloadProgressWithProgressAndRequestURL) {
-        self.onDownloadProgressWithProgressAndRequestURL(conn.progress, conn.originalRequest.URL);
+    if (self.onDownloadProgressWithProgressAndSuggestedFilename) {
+        self.onDownloadProgressWithProgressAndSuggestedFilename(conn.progress, conn.suggestedFilename);
     }
 }
 
@@ -215,6 +215,7 @@
     [_data appendData:data];
     BDURLConnection *conn = (BDURLConnection*) connection;
     [conn setProgress:_data.length/(double) conn.expectedLength ];
+    self.onDownloadProgressWithProgressAndSuggestedFilename(conn.progress, conn.suggestedFilename);
    // //DLog(@"progress for %@ at %f", conn.suggestedFilename, conn.progress);
 }
 
@@ -288,7 +289,7 @@
 }
 
 @synthesize onNetworkActivity;
-@synthesize onDownloadProgressWithProgressAndRequestURL;
+@synthesize onDownloadProgressWithProgressAndSuggestedFilename;
 @synthesize onNetworkError;
 
 @synthesize maximumNumberOfThreads;

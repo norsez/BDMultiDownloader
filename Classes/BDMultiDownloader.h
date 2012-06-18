@@ -63,8 +63,8 @@
 @property (nonatomic, copy) void (^onNetworkError)(NSError*);
 //block called to indicates network activity. YES when there's network activity from this class. No otherwise. This can be used to toggle iOS's network status indicator.
 @property (nonatomic, copy) void (^onNetworkActivity)(BOOL);
-//block called to indicate progress (ranging from 0.0 to 1.0 Finished) of each request URL.
-@property (nonatomic, copy) void (^onDownloadProgressWithProgressAndRequestURL)(double, NSURL*);
+//block called to indicate progress (ranging from 0.0 to 1.0 Finished) of each file (indicated by suggested filename)
+@property (nonatomic, copy) void (^onDownloadProgressWithProgressAndSuggestedFilename)(double, NSString*);
 
 #pragma mark - optional configs
 @property (nonatomic, assign) NSUInteger cacheSizeLimit;

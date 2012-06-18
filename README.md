@@ -15,8 +15,8 @@ Your app needs to download concurrently from multiple URLs (local or not). This 
 
 ##How to use
 - Without CocoaPods, just include h/.m files in Classes folder to your source code
-
+- Check out the iPhone demo. Read the comments. Send me questions, if any.
 
 
 ##License
-BDToastAlert is licensed under BSD. More info in LICENSE file.
+BDMultiDownloader is licensed under BSD. More info in LICENSE file.

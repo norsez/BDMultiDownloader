@@ -68,7 +68,7 @@
 				FF188F58158EFA040014B0F9 /* BDMultiDownloader.podspec */,
 				FF188F59158EFA040014B0F9 /* LICENSE */,
 				FF188F5A158EFA040014B0F9 /* README.md */,
-				F39E3C5E158C7AF1001C8285 /* classes */,
+				F39E3C5E158C7AF1001C8285 /* Classes */,
 				F39E3C46158C65B6001C8285 /* BDMultiDownloader */,
 				F39E3C3F158C65B6001C8285 /* Frameworks */,
 				F39E3C3D158C65B6001C8285 /* Products */,
@@ -121,12 +121,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F39E3C5E158C7AF1001C8285 /* classes */ = {
+		F39E3C5E158C7AF1001C8285 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				F39E3C5F158C7AF1001C8285 /* BDMultiDownloader.h */,
 				F39E3C60158C7AF1001C8285 /* BDMultiDownloader.m */,
 			);
+			name = Classes;
 			path = classes;
 			sourceTree = "<group>";
 		};
