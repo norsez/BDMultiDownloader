@@ -13,12 +13,14 @@
 		F39E3C4B158C65B6001C8285 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C49158C65B6001C8285 /* InfoPlist.strings */; };
 		F39E3C4D158C65B6001C8285 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C4C158C65B6001C8285 /* main.m */; };
 		F39E3C51158C65B7001C8285 /* BDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C50158C65B6001C8285 /* BDAppDelegate.m */; };
-		F39E3C54158C65B7001C8285 /* BDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C53158C65B7001C8285 /* BDViewController.m */; };
-		F39E3C57158C65B7001C8285 /* BDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C55158C65B7001C8285 /* BDViewController.xib */; };
 		F39E3C61158C7AF1001C8285 /* BDMultiDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C60158C7AF1001C8285 /* BDMultiDownloader.m */; };
 		FF188F5B158EFA040014B0F9 /* BDMultiDownloader.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FF188F58158EFA040014B0F9 /* BDMultiDownloader.podspec */; };
 		FF188F5C158EFA040014B0F9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FF188F59158EFA040014B0F9 /* LICENSE */; };
 		FF188F5D158EFA040014B0F9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FF188F5A158EFA040014B0F9 /* README.md */; };
+		FF188F66158F198C0014B0F9 /* BDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF188F65158F198C0014B0F9 /* BDViewController.m */; };
+		FF188F6D158F1C530014B0F9 /* BDViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = FF188F6C158F1C530014B0F9 /* BDViewController+Private.m */; };
+		FF188F76158F45220014B0F9 /* BDCacheDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF188F74158F45220014B0F9 /* BDCacheDemoViewController.m */; };
+		FF188F77158F45220014B0F9 /* BDCacheDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF188F75158F45220014B0F9 /* BDCacheDemoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,14 +34,18 @@
 		F39E3C4E158C65B6001C8285 /* BDMultiDownloader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMultiDownloader-Prefix.pch"; sourceTree = "<group>"; };
 		F39E3C4F158C65B6001C8285 /* BDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDAppDelegate.h; sourceTree = "<group>"; };
 		F39E3C50158C65B6001C8285 /* BDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDAppDelegate.m; sourceTree = "<group>"; };
-		F39E3C52158C65B7001C8285 /* BDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDViewController.h; sourceTree = "<group>"; };
-		F39E3C53158C65B7001C8285 /* BDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDViewController.m; sourceTree = "<group>"; };
-		F39E3C56158C65B7001C8285 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BDViewController.xib; sourceTree = "<group>"; };
 		F39E3C5F158C7AF1001C8285 /* BDMultiDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMultiDownloader.h; sourceTree = "<group>"; };
 		F39E3C60158C7AF1001C8285 /* BDMultiDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMultiDownloader.m; sourceTree = "<group>"; };
 		FF188F58158EFA040014B0F9 /* BDMultiDownloader.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDMultiDownloader.podspec; sourceTree = "<group>"; };
 		FF188F59158EFA040014B0F9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FF188F5A158EFA040014B0F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		FF188F64158F198C0014B0F9 /* BDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDViewController.h; sourceTree = "<group>"; };
+		FF188F65158F198C0014B0F9 /* BDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDViewController.m; sourceTree = "<group>"; };
+		FF188F6B158F1C530014B0F9 /* BDViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDViewController+Private.h"; sourceTree = "<group>"; };
+		FF188F6C158F1C530014B0F9 /* BDViewController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BDViewController+Private.m"; sourceTree = "<group>"; };
+		FF188F73158F45220014B0F9 /* BDCacheDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDCacheDemoViewController.h; sourceTree = "<group>"; };
+		FF188F74158F45220014B0F9 /* BDCacheDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDCacheDemoViewController.m; sourceTree = "<group>"; };
+		FF188F75158F45220014B0F9 /* BDCacheDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDCacheDemoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,9 +98,13 @@
 			children = (
 				F39E3C4F158C65B6001C8285 /* BDAppDelegate.h */,
 				F39E3C50158C65B6001C8285 /* BDAppDelegate.m */,
-				F39E3C52158C65B7001C8285 /* BDViewController.h */,
-				F39E3C53158C65B7001C8285 /* BDViewController.m */,
-				F39E3C55158C65B7001C8285 /* BDViewController.xib */,
+				FF188F64158F198C0014B0F9 /* BDViewController.h */,
+				FF188F65158F198C0014B0F9 /* BDViewController.m */,
+				FF188F6B158F1C530014B0F9 /* BDViewController+Private.h */,
+				FF188F6C158F1C530014B0F9 /* BDViewController+Private.m */,
+				FF188F73158F45220014B0F9 /* BDCacheDemoViewController.h */,
+				FF188F74158F45220014B0F9 /* BDCacheDemoViewController.m */,
+				FF188F75158F45220014B0F9 /* BDCacheDemoViewController.xib */,
 				F39E3C47158C65B6001C8285 /* Supporting Files */,
 			);
 			path = BDMultiDownloader;
@@ -173,10 +183,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F39E3C4B158C65B6001C8285 /* InfoPlist.strings in Resources */,
-				F39E3C57158C65B7001C8285 /* BDViewController.xib in Resources */,
 				FF188F5B158EFA040014B0F9 /* BDMultiDownloader.podspec in Resources */,
 				FF188F5C158EFA040014B0F9 /* LICENSE in Resources */,
 				FF188F5D158EFA040014B0F9 /* README.md in Resources */,
+				FF188F77158F45220014B0F9 /* BDCacheDemoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,8 +199,10 @@
 			files = (
 				F39E3C4D158C65B6001C8285 /* main.m in Sources */,
 				F39E3C51158C65B7001C8285 /* BDAppDelegate.m in Sources */,
-				F39E3C54158C65B7001C8285 /* BDViewController.m in Sources */,
 				F39E3C61158C7AF1001C8285 /* BDMultiDownloader.m in Sources */,
+				FF188F66158F198C0014B0F9 /* BDViewController.m in Sources */,
+				FF188F6D158F1C530014B0F9 /* BDViewController+Private.m in Sources */,
+				FF188F76158F45220014B0F9 /* BDCacheDemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,14 +215,6 @@
 				F39E3C4A158C65B6001C8285 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F39E3C55158C65B7001C8285 /* BDViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F39E3C56158C65B7001C8285 /* en */,
-			);
-			name = BDViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
