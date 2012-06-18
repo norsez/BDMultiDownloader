@@ -1,14 +1,13 @@
 Pod::Spec.new do |s|
-  s.name     = 'BDToastAlert'
-  s.version  = '0.1.0'
+  s.name     = 'BDMultiDownloader'
+  s.version  = '0.0.1'
   s.license  = 'BSD'
-  s.summary  = 'A simple UIKit class for displaying non-obstructive message/alert on iOS UIViewControllers '
-  s.homepage = 'https://github.com/norsez/BDToastAlert'
+  s.summary  = 'Simple block-based concurrent multiple-URL data downloader based only on NSURLConnection.'
+  s.homepage = 'https://github.com/norsez/BDMultiDownloader'
   s.author   = { 'Norsez Orankijanan' => 'norsez@gmail.com' }
-  s.source   = { :git => 'https://github.com/norsez/BDToastAlert.git', :tag => '0.1.0' }
-  s.description = 'A simple UIKit class for displaying non-obstructive alert message labels on iOS UIView. Sometimes your app might want to display messages and errors to user, but not needing user interaction to acknowledge those messages. BDAlertView can do that.'
+  s.source   = { :git => 'https://github.com/norsez/BDMultiDownloader.git', :tag => '0.0.1' }
+  s.description = 'Simple block-based concurrent multiple-URL data downloader based only on NSURLConnection. Your app needs to download concurrently from multiple URLs (local or not). This class does it a simple way using blocks and NSURLConnection.'
   s.platform = :ios
-  s.source_files = 'Classes', 'BDToastAlert/BDToastAlert/BDToastAlert'
-  s.frameworks = 'QuartzCore'
+  s.source_files = 'Classes', 'Classes'
   s.requires_arc = true
 end
