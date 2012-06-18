@@ -16,9 +16,9 @@
 		F39E3C54158C65B7001C8285 /* BDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C53158C65B7001C8285 /* BDViewController.m */; };
 		F39E3C57158C65B7001C8285 /* BDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C55158C65B7001C8285 /* BDViewController.xib */; };
 		F39E3C61158C7AF1001C8285 /* BDMultiDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F39E3C60158C7AF1001C8285 /* BDMultiDownloader.m */; };
-		F39E3C69158C9EF8001C8285 /* BDToastAlert.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C66158C9EF8001C8285 /* BDToastAlert.podspec */; };
-		F39E3C6A158C9EF8001C8285 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C67158C9EF8001C8285 /* LICENSE */; };
-		F39E3C6B158C9EF8001C8285 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F39E3C68158C9EF8001C8285 /* README.md */; };
+		FF188F5B158EFA040014B0F9 /* BDMultiDownloader.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FF188F58158EFA040014B0F9 /* BDMultiDownloader.podspec */; };
+		FF188F5C158EFA040014B0F9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FF188F59158EFA040014B0F9 /* LICENSE */; };
+		FF188F5D158EFA040014B0F9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FF188F5A158EFA040014B0F9 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +37,9 @@
 		F39E3C56158C65B7001C8285 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BDViewController.xib; sourceTree = "<group>"; };
 		F39E3C5F158C7AF1001C8285 /* BDMultiDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMultiDownloader.h; sourceTree = "<group>"; };
 		F39E3C60158C7AF1001C8285 /* BDMultiDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMultiDownloader.m; sourceTree = "<group>"; };
-		F39E3C66158C9EF8001C8285 /* BDToastAlert.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BDToastAlert.podspec; path = ../BDToastAlert/BDToastAlert.podspec; sourceTree = "<group>"; };
-		F39E3C67158C9EF8001C8285 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../BDToastAlert/LICENSE; sourceTree = "<group>"; };
-		F39E3C68158C9EF8001C8285 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../BDToastAlert/README.md; sourceTree = "<group>"; };
+		FF188F58158EFA040014B0F9 /* BDMultiDownloader.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDMultiDownloader.podspec; sourceTree = "<group>"; };
+		FF188F59158EFA040014B0F9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		FF188F5A158EFA040014B0F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +59,9 @@
 		F39E3C31158C65B6001C8285 = {
 			isa = PBXGroup;
 			children = (
-				F39E3C66158C9EF8001C8285 /* BDToastAlert.podspec */,
-				F39E3C67158C9EF8001C8285 /* LICENSE */,
-				F39E3C68158C9EF8001C8285 /* README.md */,
+				FF188F58158EFA040014B0F9 /* BDMultiDownloader.podspec */,
+				FF188F59158EFA040014B0F9 /* LICENSE */,
+				FF188F5A158EFA040014B0F9 /* README.md */,
 				F39E3C5E158C7AF1001C8285 /* classes */,
 				F39E3C46158C65B6001C8285 /* BDMultiDownloader */,
 				F39E3C3F158C65B6001C8285 /* Frameworks */,
@@ -174,9 +174,9 @@
 			files = (
 				F39E3C4B158C65B6001C8285 /* InfoPlist.strings in Resources */,
 				F39E3C57158C65B7001C8285 /* BDViewController.xib in Resources */,
-				F39E3C69158C9EF8001C8285 /* BDToastAlert.podspec in Resources */,
-				F39E3C6A158C9EF8001C8285 /* LICENSE in Resources */,
-				F39E3C6B158C9EF8001C8285 /* README.md in Resources */,
+				FF188F5B158EFA040014B0F9 /* BDMultiDownloader.podspec in Resources */,
+				FF188F5C158EFA040014B0F9 /* LICENSE in Resources */,
+				FF188F5D158EFA040014B0F9 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
