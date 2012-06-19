@@ -279,6 +279,7 @@
         _loadingQueue = [[NSMutableArray alloc] init];
         _requestCompletions = [[NSMutableDictionary alloc] init];
         _dataCache = [[NSCache alloc] init];
+        self.completionQueue = NULL;
         [_dataCache setName:@"data cache"];
         [_dataCache setCountLimit:kMaxCache];
         self.connectionTimeout = kIntervalDefaultTimeout;
