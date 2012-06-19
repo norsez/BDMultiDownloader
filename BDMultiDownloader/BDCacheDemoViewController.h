@@ -16,4 +16,5 @@
 @property (nonatomic, strong) IBOutlet UIProgressView* progressBar2;
 
 - (IBAction)didPressStart:(id)sender;
+- (IBAction)didCancel:(id)sender;
 @end

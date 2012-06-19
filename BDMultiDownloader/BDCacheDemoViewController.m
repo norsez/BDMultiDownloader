@@ -87,6 +87,15 @@
     
 }
 
+- (void)didCancel:(id)sender
+{
+    
+    //Cancel all requests at once. 
+    //This is how you kill all BDMultiDownloader opearations. 
+    [[BDMultiDownloader shared] clearQueue];
+    self.startButton.enabled = YES;
+}
+
 @synthesize startButton;
 @synthesize imageView2;
 @synthesize progressBar;
