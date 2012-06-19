@@ -235,7 +235,14 @@
     [_loadingQueue removeObject:connection.originalRequest];
     void(^completion)(NSData*) = [(BDURLConnection*)connection completionWithDownloadedData];
     if (completion) {
-        completion(data);
+        if (self.completionQueue) {
+            dispatch_async(self.completionQueue, ^{
+                completion(data);
+            });
+        }else {
+            completion(data);
+        }
+
     }    
     
     [self launchNextConnection];
@@ -296,4 +303,7 @@
 @synthesize httpHeaders;
 @synthesize cacheSizeLimit=_cacheSizeLimit;
 @synthesize connectionTimeout;
+
+@synthesize completionQueue;
+
 @end
