@@ -4,6 +4,8 @@ Your app needs to download concurrently from multiple URLs (local or not). This 
 
 ##Features
 - Receive downloaded data using blocks
+- Download progress for each download
+- Cancel download
 - Automatic caching
 - A convenient method for downloading multiple images 
 - Only tested in iOS, but should also work in Mac OS. 
