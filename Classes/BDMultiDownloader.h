@@ -57,6 +57,10 @@
  * Cancel all pending URL connections.
  */
 - (void) clearQueue;
+/**
+ * Cancel a download using download path.
+ */
+- (void) dequeueWithPath:(NSString*)path;
 
 #pragma mark - block based delegators, they are all optional (can be nil)
 //the queue which completion block is executed in. If NULL, execute in main queue.

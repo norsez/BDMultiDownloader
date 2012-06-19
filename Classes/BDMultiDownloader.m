@@ -120,6 +120,22 @@
     }
 }
 
+- (void)dequeueWithPath:(NSString *)path
+{
+    NSArray * searchResults = [_loadingQueue filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        BDURLConnection *aConn = evaluatedObject;
+        return [aConn.originalPath isEqualToString:path];
+    }]];
+    
+    if (searchResults.count > 0) {
+        BDURLConnection *connection = [searchResults objectAtIndex:0];                       
+        [_loadingQueue removeObject:connection.originalRequest];
+        [_currentConnectionsData removeObjectForKey:connection];
+        [_currentConnectionsData removeObjectForKey:connection];
+        [_requestCompletions removeObjectForKey:connection];
+    }    
+}
+
 - (void)clearQueue
 {
     
@@ -168,7 +184,6 @@
         return;
     }
     
-    
     BDURLConnection *conn = [[BDURLConnection alloc] initWithRequest:request delegate:self];
     conn.originalPath = request.URL.absoluteString;
     [_currentConnections addObject:conn];
@@ -191,9 +206,6 @@
 }
 
 #pragma mark - connection delegate
-
-
-
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     NSMutableData *data = [[NSMutableData alloc] init];
     [_currentConnectionsData setObject:data forKey:connection];
@@ -215,8 +227,9 @@
     [_data appendData:data];
     BDURLConnection *conn = (BDURLConnection*) connection;
     [conn setProgress:_data.length/(double) conn.expectedLength ];
-    self.onDownloadProgressWithProgressAndSuggestedFilename(conn.progress, conn.suggestedFilename);
-   // //DLog(@"progress for %@ at %f", conn.suggestedFilename, conn.progress);
+    if (self.onDownloadProgressWithProgressAndSuggestedFilename) {
+        self.onDownloadProgressWithProgressAndSuggestedFilename(conn.progress, conn.suggestedFilename);
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
