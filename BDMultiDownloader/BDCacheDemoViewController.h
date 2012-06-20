@@ -17,4 +17,6 @@
 
 - (IBAction)didPressStart:(id)sender;
 - (IBAction)didCancel:(id)sender;
+- (IBAction)didStop1:(id)sender;
+- (IBAction)didStop2:(id)sender;
 @end

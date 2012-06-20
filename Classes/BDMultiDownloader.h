@@ -59,6 +59,7 @@
 - (void) clearQueue;
 /**
  * Cancel a download using download path.
+ * @path the download path to dequeue (to cancel.)
  */
 - (void) dequeueWithPath:(NSString*)path;
 

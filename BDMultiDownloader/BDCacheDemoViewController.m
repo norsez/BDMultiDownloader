@@ -96,6 +96,18 @@
     self.startButton.enabled = YES;
 }
 
+- (void)didStop1:(id)sender
+{
+    //This demonstates how to cancel an ongoing downloading.
+    //This only works while the download hasn't finished, apparently.
+    [[BDMultiDownloader shared] dequeueWithPath:kPathImage1];
+}
+
+- (void)didStop2:(id)sender
+{
+    [[BDMultiDownloader shared] dequeueWithPath:kPathImage2];    
+}
+
 @synthesize startButton;
 @synthesize imageView2;
 @synthesize progressBar;
