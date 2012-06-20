@@ -122,15 +122,15 @@
 
 - (void)dequeueWithPath:(NSString *)path
 {
-    NSArray * searchResults = [_loadingQueue filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+    NSArray * searchResults = [_currentConnections filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         BDURLConnection *aConn = evaluatedObject;
         return [aConn.originalPath isEqualToString:path];
     }]];
     
     if (searchResults.count > 0) {
-        BDURLConnection *connection = [searchResults objectAtIndex:0];                       
+        BDURLConnection *connection = [searchResults objectAtIndex:0];    
+        [connection cancel];
         [_loadingQueue removeObject:connection.originalRequest];
-        [_currentConnectionsData removeObjectForKey:connection];
         [_currentConnectionsData removeObjectForKey:connection];
         [_requestCompletions removeObjectForKey:connection];
     }    
