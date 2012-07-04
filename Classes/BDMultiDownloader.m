@@ -73,6 +73,7 @@
 
 - (void) launchNextConnection;
 - (NSUInteger) numberOfItemsInQueue;
+- (NSString*) keyForRequest:(NSURLRequest*)request;
 @end
 
 #define kMaxNumberOfThreads 25
@@ -101,15 +102,15 @@
     
     if (request){
         [_loadingQueue addObject:request];
-        [_requestCompletions setObject:[completionWithDownloadedData copy] forKey:request.URL.absoluteString];
+        [_requestCompletions setObject:[completionWithDownloadedData copy] forKey:[self keyForRequest:request]];
         [self launchNextConnection];        
     }
 }
 
 - (void)queueURLRequest:(NSURLRequest *)urlRequest completion:(void (^)(NSData *))completionWithDownloadedData
 {
-    [_loadingQueue addObject:urlRequest];
-    [_requestCompletions setObject:[completionWithDownloadedData copy] forKey:urlRequest.URL.absoluteString];
+    [_loadingQueue addObject:[urlRequest copy] ];
+    [_requestCompletions setObject:[completionWithDownloadedData copy] forKey:[self keyForRequest:urlRequest]];
     [self launchNextConnection];
 }
 
@@ -192,6 +193,11 @@
     return _loadingQueue.count;
 }
 
+- (NSString*) keyForRequest:(NSURLRequest*)request
+{
+    return [NSString stringWithFormat:@"%@%@",request.URL.absoluteString, request.allHTTPHeaderFields.allValues];
+}
+
 - (void)launchNextConnection
 {
     if (_currentConnections.count >= self.maximumNumberOfThreads) {
@@ -207,10 +213,10 @@
     NSURLRequest *request = [_loadingQueue objectAtIndex:0];
     [_loadingQueue removeObjectAtIndex:0];
     
-    NSData *dataInCache = [_dataCache objectForKey:request.URL.absoluteString];
+    NSData *dataInCache = [_dataCache objectForKey:[self keyForRequest:request]];
     if (dataInCache) {
-        void (^completion)(NSData*) = [_requestCompletions objectForKey:request.URL.absoluteString];
-        [_requestCompletions removeObjectForKey:request.URL.absoluteString];
+        void (^completion)(NSData*) = [_requestCompletions objectForKey:[self keyForRequest:request]];
+        [_requestCompletions removeObjectForKey:[self keyForRequest:request]];
         if (completion) {
             completion(dataInCache);
         }
@@ -221,7 +227,7 @@
     conn.originalPath = request.URL.absoluteString;
     [_currentConnections addObject:conn];
     
-    void (^completion)(NSData*) = [_requestCompletions objectForKey:request.URL.absoluteString];
+    void (^completion)(NSData*) = [_requestCompletions objectForKey:[self keyForRequest:request]];
     [conn setCompletionWithDownloadedData:completion];
     [conn start];
     if (self.onNetworkActivity) {
@@ -278,7 +284,7 @@
         [_dataCache setObject:data forKey:conn.originalPath cost:data.length];
     }
     [_currentConnectionsData removeObjectForKey:connection];
-    [_loadingQueue removeObject:connection.originalRequest];
+    [_loadingQueue removeObject:[self keyForRequest:connection.originalRequest]];
     void(^completion)(NSData*) = [(BDURLConnection*)connection completionWithDownloadedData];
     if (completion) {
         if (self.completionQueue) {
