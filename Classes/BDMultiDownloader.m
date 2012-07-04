@@ -106,6 +106,39 @@
     }
 }
 
+- (void)queueURLRequest:(NSURLRequest *)urlRequest completion:(void (^)(NSData *))completionWithDownloadedData
+{
+    [_loadingQueue addObject:urlRequest];
+    [_requestCompletions setObject:[completionWithDownloadedData copy] forKey:urlRequest.URL.absoluteString];
+    [self launchNextConnection];
+}
+
+- (void)jsonWithRequest:(NSURLRequest *)jsonRequest options:(NSJSONWritingOptions)options 
+             completion:(void (^)(id))completionWithJSONObject
+{
+    [self queueURLRequest:jsonRequest
+               completion:^(NSData *data) {
+                   if (data == nil) {
+                       completionWithJSONObject(nil);
+                       return;
+                   }
+                   
+                   NSError *error = nil;
+                   id jsonObject  = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:options error:&error];
+                   if (error) {
+                       if (onNetworkError) {
+                           onNetworkError(error);
+                           completionWithJSONObject(nil);
+                           return;
+                       }
+                   }
+                   
+                   completionWithJSONObject(jsonObject);
+                   
+               }];
+}
+
 - (void)imageWithPath:(NSString *)urlPath completion:(void (^)(UIImage *, BOOL))completionWithImageYesIfFromCache
 {
     NSData *data = [_dataCache objectForKey:urlPath];

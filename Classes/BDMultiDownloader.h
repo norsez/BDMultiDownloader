@@ -47,6 +47,22 @@
 - (void) queueRequest:(NSString*)urlPath completion:(void(^)(NSData*))completionWithDownloadedData;
 
 /**
+ URL request version of queueRequest:completion:. This version is suitable for a more complex request 
+ (e.g. special http body encoding, or headers etc.)
+ @param urlRequest a url request
+ @param completionWithDownloadedData block returned with downloaded data.  
+ */
+- (void) queueURLRequest:(NSURLRequest*)urlRequest completion:(void(^)(NSData*))completionWithDownloadedData;
+
+/**
+ Convenient method for retriving JSON object.
+ @param urlRequest a url request to JSON data
+ @param completionWithJSONObject block returned with JSON object, nil if error.
+ @param options NSJSONReadingOptions settings
+ */
+- (void) jsonWithRequest:(NSURLRequest*)jsonRequest options:(NSJSONWritingOptions)options completion:(void(^)(id))completionWithJSONObject; 
+
+/**
  * Convenient method for downloading image files. 
  * @param urlPath path to the image
  * @param completionWithImageYesIfFromCache block returned with downloaded image, and YES if the image is returned from cache.
