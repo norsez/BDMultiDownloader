@@ -102,6 +102,11 @@ Since this class is originally designed for downloading multiple homogeneous typ
 The `onDownloadProgressWithProgressAndSuggestedFilename` block can be used for tracking progress for each download request. The progress is returned in the range of 0.0 to 1.0 (start to finish). The suggested filename is usually the last component in your download request path, but it could be nil in some cases. The block is triggered for all the ongoing downloads. 
 
 	
+###`NSURLRequest` version of the API
+Some requests are complex than just http URL paths. iOS developers use `NSURLRequest` or `NSMutableURLRequest` classes to build these complex requests such as defining HTTP headers, HTTP methods, etc.
+
+###Convenient method for JSON requests
+The convenient method for JSON request utilizes the `NSURLRequest` version call to send async request to the endpoint and completes with a block with the returned JSON object (usually variations of NSArray or NSDictionary classes depending on the supplied NSJSONReadingOptions.)
 
 
 ---
