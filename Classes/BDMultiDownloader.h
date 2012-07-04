@@ -80,8 +80,11 @@
 - (void) dequeueWithPath:(NSString*)path;
 
 #pragma mark - block based delegators, they are all optional (can be nil)
-//the queue which completion block is executed in. If NULL, execute in main queue.
-@property (nonatomic) dispatch_queue_t completionQueue;
+/**
+ the queue which completion block is executed in. If NULL, execute in main queue.
+ @deprecated user should manage the completion queue on their own for now.
+ */
+@property (nonatomic) dispatch_queue_t completionQueue __deprecated;
 //block called when encountered error
 @property (nonatomic, copy) void (^onNetworkError)(NSError*);
 //block called to indicates network activity. YES when there's network activity from this class. No otherwise. This can be used to toggle iOS's network status indicator.
