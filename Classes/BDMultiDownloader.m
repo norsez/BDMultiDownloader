@@ -143,7 +143,8 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 - (void)imageWithPath:(NSString *)urlPath completion:(void (^)(UIImage *, BOOL))completionWithImageYesIfFromCache
 {
-    NSData *data = [_dataCache objectForKey:urlPath];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlPath]];
+    NSData *data = [_dataCache objectForKey:[self keyForRequest:request]];
     if  (data.length > 0){
         UIImage *image = [UIImage imageWithData:data];
         completionWithImageYesIfFromCache(image, YES);
@@ -219,10 +220,11 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     NSURLRequest *request = [_loadingQueue objectAtIndex:0];
     [_loadingQueue removeObjectAtIndex:0];
     
-    NSData *dataInCache = [_dataCache objectForKey:[self keyForRequest:request]];
+    NSString *requestKey = [self keyForRequest:request];
+    NSData *dataInCache = [_dataCache objectForKey:requestKey];
     if (dataInCache) {
-        void (^completion)(NSData*) = [_requestCompletions objectForKey:[self keyForRequest:request]];
-        [_requestCompletions removeObjectForKey:[self keyForRequest:request]];
+        void (^completion)(NSData*) = [_requestCompletions objectForKey:requestKey];
+        [_requestCompletions removeObjectForKey:requestKey];
         if (completion) {
             completion(dataInCache);
         }
@@ -286,11 +288,12 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     NSData *data = [_currentConnectionsData objectForKey:connection];
     BDURLConnection *conn = (BDURLConnection*) connection;
     if (data.length > 0){
-        [_dataCache setObject:data forKey:conn.originalRequest cost:data.length];
+        [_dataCache setObject:data forKey:[self keyForRequest:conn.originalRequest] cost:data.length];
     }
     [_currentConnectionsData removeObjectForKey:connection];
     [_loadingQueue removeObject:[self keyForRequest:connection.originalRequest]];
     void(^completion)(NSData*) = [(BDURLConnection*)connection completionWithDownloadedData];
+
     if (completion) {
         if (self.completionQueue) {
             dispatch_async(self.completionQueue, ^{
