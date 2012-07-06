@@ -35,12 +35,14 @@
 #import "BDMultiDownloader.h"
 
 #define kIntervalDefaultTimeout 60
+#define kMaxNumberOfThreads 25
+#define kMaxCache 10 * 1024 * 1000
+NSString* const kPOST = @"POST";
 
 @interface BDURLConnection : NSURLConnection{
     void(^_completion)(NSData*);
 }
 @property (nonatomic, copy) void(^completionWithDownloadedData)(NSData*);
-@property (nonatomic, copy) NSString* originalPath;
 @property (nonatomic, assign) double progress;
 @property (nonatomic, assign) long long expectedLength;
 @property (nonatomic, strong) NSString *MIMEType;
@@ -54,7 +56,6 @@
     return self;
 }
 @synthesize completionWithDownloadedData;
-@synthesize originalPath;
 @synthesize MIMEType;
 @synthesize expectedLength;
 @synthesize progress;
@@ -76,9 +77,9 @@
 - (NSString*) keyForRequest:(NSURLRequest*)request;
 @end
 
-#define kMaxNumberOfThreads 25
-#define kMaxCache 10 * 1024 * 1000
 @implementation BDMultiDownloader
+
+
 - (void)queueRequest:(NSString *)urlPath completion:(void (^)(NSData *))completionWithDownloadedData
 {
     if(!urlPath){
@@ -156,9 +157,11 @@
 
 - (void)dequeueWithPath:(NSString *)path
 {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+    NSString *key = [self keyForRequest:request];
     NSArray * searchResults = [_currentConnections filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         BDURLConnection *aConn = evaluatedObject;
-        return [aConn.originalPath isEqualToString:path];
+        return [[self keyForRequest:aConn.originalRequest] isEqualToString:key];
     }]];
     
     if (searchResults.count > 0) {
@@ -195,7 +198,10 @@
 
 - (NSString*) keyForRequest:(NSURLRequest*)request
 {
-    return [NSString stringWithFormat:@"%@%@",request.URL.absoluteString, request.allHTTPHeaderFields.allValues];
+    if ([[request.HTTPMethod uppercaseString] isEqualToString:kPOST]) {
+        return [NSString stringWithFormat:@"%@%@%@",request.URL.absoluteString, request.HTTPMethod, request.HTTPBody];
+    }
+    return request.URL.absoluteString;
 }
 
 - (void)launchNextConnection
@@ -224,7 +230,6 @@
     }
     
     BDURLConnection *conn = [[BDURLConnection alloc] initWithRequest:request delegate:self];
-    conn.originalPath = request.URL.absoluteString;
     [_currentConnections addObject:conn];
     
     void (^completion)(NSData*) = [_requestCompletions objectForKey:[self keyForRequest:request]];
@@ -281,7 +286,7 @@
     NSData *data = [_currentConnectionsData objectForKey:connection];
     BDURLConnection *conn = (BDURLConnection*) connection;
     if (data.length > 0){
-        [_dataCache setObject:data forKey:conn.originalPath cost:data.length];
+        [_dataCache setObject:data forKey:conn.originalRequest cost:data.length];
     }
     [_currentConnectionsData removeObjectForKey:connection];
     [_loadingQueue removeObject:[self keyForRequest:connection.originalRequest]];

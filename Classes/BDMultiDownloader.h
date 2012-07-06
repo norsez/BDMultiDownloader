@@ -39,10 +39,12 @@
 @interface BDMultiDownloader : NSObject <NSURLConnectionDelegate>
 
 /**
- * Add a path for data download. Download begins when there's a free connection 
- * available in the pool. The downloaded data is automatically cached.
- * @param urlPath path to download. 
- * @param completionWithDownloadedData block returned with downloaded data. 
+ Add a path for data download. Download begins when there's a free connection 
+ available in the pool. The downloaded data is automatically cached.
+ This is the core method of this class. 
+ 
+ @param urlPath path to download.  
+ @param completionWithDownloadedData block returned with downloaded data. 
  */
 - (void) queueRequest:(NSString*)urlPath completion:(void(^)(NSData*))completionWithDownloadedData;
 
@@ -94,6 +96,10 @@
 
 #pragma mark - optional configs
 @property (nonatomic, assign) NSUInteger cacheSizeLimit;
+/**
+ The number of ongoing downloads at one time. The class holds download requests in a queue, and wait
+ for there are download slots available before actually start making download connections.
+ */
 @property (nonatomic, assign) NSUInteger maximumNumberOfThreads;
 @property (nonatomic, strong) NSDictionary *httpHeaders;
 @property (nonatomic, assign) NSTimeInterval connectionTimeout;
