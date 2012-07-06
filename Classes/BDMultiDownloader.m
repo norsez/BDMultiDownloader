@@ -37,7 +37,7 @@
 #define kIntervalDefaultTimeout 60
 #define kMaxNumberOfThreads 25
 #define kMaxCache 10 * 1024 * 1000
-NSString* const kPOST = @"POST";
+NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 @interface BDURLConnection : NSURLConnection{
     void(^_completion)(NSData*);
@@ -198,7 +198,7 @@ NSString* const kPOST = @"POST";
 
 - (NSString*) keyForRequest:(NSURLRequest*)request
 {
-    if ([[request.HTTPMethod uppercaseString] isEqualToString:kPOST]) {
+    if ([[request.HTTPMethod uppercaseString] isEqualToString:BDMultiDownloaderMethodPOST]) {
         return [NSString stringWithFormat:@"%@%@%@",request.URL.absoluteString, request.HTTPMethod, request.HTTPBody];
     }
     return request.URL.absoluteString;
