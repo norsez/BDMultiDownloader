@@ -112,8 +112,9 @@ The convenient method for JSON request utilizes the `NSURLRequest` version call 
 ---
 
 ##How to use
+- Be sure to checkout the latest __tag__, as opposed to the latest commit. Only tagged points are stable.
 - Without CocoaPods, just include h/.m files in Classes folder to your source code
-- Check out the iPhone demo. Read the comments. Send me questions, if any.
+- Look at the iPhone demo. Read the comments. Send me questions, if any.
  
  
 ---
