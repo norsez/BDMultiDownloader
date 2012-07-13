@@ -103,6 +103,8 @@
 @property (nonatomic, assign) NSUInteger maximumNumberOfThreads;
 @property (nonatomic, strong) NSDictionary *httpHeaders;
 @property (nonatomic, assign) NSTimeInterval connectionTimeout;
+@property (nonatomic, assign) NSURLCacheStoragePolicy urlCacheStoragePolicy;
+
 
 
 + (BDMultiDownloader *)shared;

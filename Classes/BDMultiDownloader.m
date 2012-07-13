@@ -89,7 +89,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     
     NSURL *url = [NSURL URLWithString:urlPath];
     NSURLRequest *request = nil;
-    NSURLRequestCachePolicy cachePolicy = NSURLCacheStorageAllowed;
+    NSURLRequestCachePolicy cachePolicy = self.urlCacheStoragePolicy;
     NSTimeInterval timeout = self.connectionTimeout;
     if (self.httpHeaders) {
         NSMutableURLRequest *r = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:cachePolicy timeoutInterval:timeout];
@@ -334,6 +334,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     self = [super init];
     if (self) {
         self.maximumNumberOfThreads = kMaxNumberOfThreads;
+        self.urlCacheStoragePolicy = NSURLCacheStorageAllowedInMemoryOnly;
         _currentConnections = [[NSMutableArray alloc] init];
         _currentConnectionsData = [[NSMutableDictionary alloc] init];
         _loadingQueue = [[NSMutableArray alloc] init];
@@ -366,5 +367,5 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 @synthesize connectionTimeout;
 
 @synthesize completionQueue;
-
+@synthesize urlCacheStoragePolicy;
 @end
