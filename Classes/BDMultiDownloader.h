@@ -85,16 +85,39 @@
 
 #pragma mark - queue manipulation
 /**
- @name Queue manipulation
+ @name Connection Queue Manipulation
+ 
+ In order to keep with the existing API and the nature of use of this class (bulk loading),
+ connection queue manipulation is designed to give more control to bulk loading.
+ 
+ __Pattern of usage__
+ 
  */
 
 /**
  Pause the class from loading the next request in the connection queue.
+ This affects only the pending connections, not the pending completion blocks.
  */
 @property (nonatomic, assign) BOOL pause;
 
+/**
+ Call this method to cancel all pending completion blocks and receive
+ their original requests. These returned requests are specific to this class.
+ They can be re-added back to the connection queue with -queueRequests:.
+ @return requests whose completions haven't been executed.
+ */
+- (NSArray*)removePendingRequests;
 
-
+/**
+ Queue a list of requests to the connection queue.
+ 
+ The input requests should be (but not required to be) NSURLRequests returned 
+ from -removePendingRequests.
+ 
+ This method will work with normal NSURLRequest instances. However, no completion blocks
+ can be specified with them. 
+ */
+- (void)queueRequests:(NSArray*)requests;
 
 
 

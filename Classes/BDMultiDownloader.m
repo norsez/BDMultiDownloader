@@ -367,6 +367,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 }
 
 
+
 #pragma mark - singleton
 
 + (BDMultiDownloader *)shared
