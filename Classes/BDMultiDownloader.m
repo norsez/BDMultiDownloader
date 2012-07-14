@@ -82,11 +82,11 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 {
     //class state data
     NSMutableArray *_currentConnections;
-    NSMutableDictionary *_currentConnectionsData;
+    NSMutableDictionary *_currentConnectionsData; //map NSURLConnection to NSData
     
     //queue management data
-    NSMutableArray *_loadingQueue;
-    NSMutableDictionary *_requestCompletions;
+    NSMutableArray *_loadingQueue; //list of NSURLRequest to connect
+    NSMutableDictionary *_requestCompletions; //map NSURLRequest.requestId to block.
     
     //Caching of loaded data
     NSCache *_dataCache;
@@ -217,8 +217,6 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 {
     return _loadingQueue.count;
 }
-
-
 
 - (void)launchNextConnection
 {
@@ -381,7 +379,26 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     }
 }
 
+- (NSArray *)removePendingConnections
+{
+    self.pause = YES;
+    NSArray *result = [_currentConnections copy];
+    [self clearQueue];
+    self.pause = NO;
+    return result;
+}
 
+- (void)queueConnections:(NSArray *)connections
+{
+    for (BDURLConnection *conn in connections){
+        if(![conn isKindOfClass:[BDURLConnection class]]){
+            //not our kind of connection, skip
+            continue;
+        }
+        NSURLRequest * request = conn.originalRequest;
+        [self  queueURLRequest:request completion:conn.completionWithDownloadedData];
+    }
+}
 
 #pragma mark - singleton
 

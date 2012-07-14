@@ -112,11 +112,11 @@
 /**
  Queue a list of requests to the connection queue.
  
- The input requests should be (but not required to be) NSURLConnection list returned 
+ The input requests must be NSURLConnection list returned 
  from -removePendingConnections.
- 
+ @param connections a list of NSURLConnection returned from -removePendingConnections
  */
-- (void)queueConnections:(NSArray*)requests;
+- (void)queueConnections:(NSArray*)connections;
 
 
 
