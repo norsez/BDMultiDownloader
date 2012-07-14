@@ -102,22 +102,21 @@
 
 /**
  Call this method to cancel all pending completion blocks and receive
- their original requests. These returned requests are specific to this class.
- They can be re-added back to the connection queue with -queueRequests:.
+ their original connections. These returned connections are specific to this class.
+ They can be re-added back to the connection queue with -queueConnections:.
+ 
  @return requests whose completions haven't been executed.
  */
-- (NSArray*)removePendingRequests;
+- (NSArray*)removePendingConnections;
 
 /**
  Queue a list of requests to the connection queue.
  
- The input requests should be (but not required to be) NSURLRequests returned 
- from -removePendingRequests.
+ The input requests should be (but not required to be) NSURLConnection list returned 
+ from -removePendingConnections.
  
- This method will work with normal NSURLRequest instances. However, no completion blocks
- can be specified with them. 
  */
-- (void)queueRequests:(NSArray*)requests;
+- (void)queueConnections:(NSArray*)requests;
 
 
 
