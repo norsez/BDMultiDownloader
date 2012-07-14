@@ -70,6 +70,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     NSMutableArray *_loadingQueue;
     NSMutableDictionary *_requestCompletions;
     NSCache *_dataCache;
+    
 }
 
 - (void) launchNextConnection;
@@ -207,6 +208,10 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 - (void)launchNextConnection
 {
+    if  (self.pause){
+        return;
+    }
+    
     if (_currentConnections.count >= self.maximumNumberOfThreads) {
         ////DLog(@"Threads at Max. Abort.");
         return;
@@ -348,6 +353,21 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     return self;
 }
 
+#pragma mark - queue manipulation
+- (void)setPause:(BOOL)pause
+{
+    if (_pause==pause) {
+        return;
+    }
+    
+    _pause = pause;
+    if (!_pause) {
+        [self launchNextConnection];
+    }
+}
+
+
+#pragma mark - singleton
 
 + (BDMultiDownloader *)shared
 {
@@ -356,6 +376,8 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     dispatch_once(&once, ^ { singleton = [[BDMultiDownloader alloc] init]; });
     return singleton;
 }
+
+#pragma mark - synthesize
 
 @synthesize onNetworkActivity;
 @synthesize onDownloadProgressWithProgressAndSuggestedFilename;
@@ -368,4 +390,5 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 @synthesize completionQueue;
 @synthesize urlCacheStoragePolicy;
+@synthesize pause=_pause;
 @end

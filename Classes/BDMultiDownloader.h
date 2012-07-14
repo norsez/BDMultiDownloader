@@ -75,11 +75,28 @@
  * Cancel all pending URL connections.
  */
 - (void) clearQueue;
+
 /**
  * Cancel a download using download path.
  * @path the download path to dequeue (to cancel.)
  */
 - (void) dequeueWithPath:(NSString*)path;
+
+
+#pragma mark - queue manipulation
+/**
+ @name Queue manipulation
+ */
+
+/**
+ Pause the class from loading the next request in the connection queue.
+ */
+@property (nonatomic, assign) BOOL pause;
+
+
+
+
+
 
 #pragma mark - block based delegators, they are all optional (can be nil)
 /**
