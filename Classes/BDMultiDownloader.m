@@ -62,6 +62,8 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 @synthesize suggestedFilename;
 @end
 
+
+#pragma mark - NSURLRequest Extension
 @interface NSURLRequest (BDMultiDownloader)
 - (NSString*)requestId;
 @end
@@ -77,7 +79,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 }
 @end
 
-
+#pragma mark - BDMultiDownloader implementations
 @interface BDMultiDownloader ()
 {
     //class state data
@@ -294,7 +296,6 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
         self.onDownloadProgressWithProgressAndSuggestedFilename(conn.progress, conn.suggestedFilename);
     }
 }
-
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (self.onNetworkActivity) {

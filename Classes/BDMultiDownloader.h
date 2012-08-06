@@ -90,8 +90,6 @@
  In order to keep with the existing API and the nature of use of this class (bulk loading),
  connection queue manipulation is designed to give more control to bulk loading.
  
- __Pattern of usage__
- 
  */
 
 /**
@@ -123,9 +121,8 @@
 #pragma mark - block based delegators, they are all optional (can be nil)
 /**
  the queue which completion block is executed in. If NULL, execute in main queue.
- @deprecated user should manage the completion queue on their own for now.
  */
-@property (nonatomic) dispatch_queue_t completionQueue __deprecated;
+@property (nonatomic, assign) dispatch_queue_t completionQueue;
 //block called when encountered error
 @property (nonatomic, copy) void (^onNetworkError)(NSError*);
 //block called to indicates network activity. YES when there's network activity from this class. No otherwise. This can be used to toggle iOS's network status indicator.
