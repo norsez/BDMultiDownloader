@@ -21,7 +21,7 @@
 //  prior written permission.
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
 //  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
 //  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
@@ -37,6 +37,11 @@
 #define kIntervalDefaultTimeout 60
 #define kMaxNumberOfThreads 25
 #define kMaxCache 10 * 1024 * 1000
+
+#define BDMDKeyRequest @"BDMDKeyRequest"
+#define BDMDKeyCompletion @"BDMDKeyCompletion"
+
+
 NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 @interface BDURLConnection : NSURLConnection{
@@ -47,6 +52,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 @property (nonatomic, assign) long long expectedLength;
 @property (nonatomic, strong) NSString *MIMEType;
 @property (nonatomic, strong) NSString *suggestedFilename;
+@property (nonatomic, strong) NSURLRequest* originalRequest;
 - (id)copyWithZone:(NSZone*)zone;
 @end
 
@@ -60,6 +66,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 @synthesize expectedLength;
 @synthesize progress;
 @synthesize suggestedFilename;
+@synthesize originalRequest;
 @end
 
 
@@ -191,9 +198,8 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     if (searchResults.count > 0) {
         BDURLConnection *connection = [searchResults objectAtIndex:0];    
         [connection cancel];
-        [_loadingQueue removeObject:connection.originalRequest];
-        [_currentConnectionsData removeObjectForKey:connection];
-        [_requestCompletions removeObjectForKey:connection];
+        [self _removeConnection:connection];
+
     }    
 }
 
@@ -222,19 +228,22 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 - (void)launchNextConnection
 {
+    //DLog(@"launchNextConnection…");
     if  (self.pause){
         return;
     }
     
     if (_currentConnections.count >= self.maximumNumberOfThreads) {
-        ////DLog(@"Threads at Max. Abort.");
+//        DLog(@"Threads at Max. Abort.");
         return;
     }
     
     if (self.numberOfItemsInQueue==0) {
-        ////DLog(@"Nothing in queue.");
+//        DLog(@"Nothing in queue.");
         return;
     }
+    
+//    DLog(@"still in queue: %d", self.numberOfItemsInQueue);
     
     NSURLRequest *request = [_loadingQueue objectAtIndex:0];
     [_loadingQueue removeObjectAtIndex:0];
@@ -251,6 +260,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     }
     
     BDURLConnection *conn = [[BDURLConnection alloc] initWithRequest:request delegate:self];
+    conn.originalRequest = request;
     conn.suggestedFilename = request.URL.lastPathComponent;
     [_currentConnections addObject:conn];
     
@@ -296,21 +306,46 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
         self.onDownloadProgressWithProgressAndSuggestedFilename(conn.progress, conn.suggestedFilename);
     }
 }
+
+- (void)_removeConnection:(BDURLConnection*)conn
+{
+    
+    __block NSUInteger indexToRemove = NSNotFound;
+    [_loadingQueue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSURLRequest *req = obj;
+        if  ([req.URL.absoluteString isEqualToString:conn.originalRequest.URL.absoluteString]){
+            indexToRemove = idx;
+            *stop = YES;
+        }
+    }];
+    
+    
+    
+    if (indexToRemove!=NSNotFound) {
+        [_loadingQueue removeObjectAtIndex:indexToRemove];
+    }
+    
+    [_currentConnections removeObject:conn];
+    [_currentConnectionsData removeObjectForKey:conn];
+    [_requestCompletions removeObjectForKey:conn];
+
+    
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (self.onNetworkActivity) {
         self.onNetworkActivity(NO);
     }
     
-    [_currentConnections removeObject:connection];
     NSData *data = [_currentConnectionsData objectForKey:connection];
     BDURLConnection *conn = (BDURLConnection*) connection;
     NSString *requestKey = conn.originalRequest.requestId;
     if (data.length > 0){
         [_dataCache setObject:data forKey:requestKey cost:data.length];
     }
-    [_currentConnectionsData removeObjectForKey:connection];
-    [_loadingQueue removeObject:conn.originalRequest];
+    [self _removeConnection:conn];
+    
     void(^completion)(NSData*) = [(BDURLConnection*)connection completionWithDownloadedData];
 
     if (completion) {
@@ -322,7 +357,9 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
             completion(data);
         }
 
-    }    
+    }
+    
+//    DLog(@"still in queue %d", self.numberOfItemsInQueue);
     
     [self launchNextConnection];
 }
@@ -333,17 +370,14 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
         self.onNetworkActivity(NO);
     }
     
-    [_currentConnections removeObject:connection];
-    [_currentConnectionsData removeObjectForKey:connection];
-    [_loadingQueue removeObject:connection.originalRequest];
-    
+    [self _removeConnection:(BDURLConnection*)connection];
     if ([error.domain isEqualToString:NSURLErrorDomain] ) {
         [self clearQueue];
         if (self.onNetworkError) {
             self.onNetworkError(error);
         }
     }
-    
+//    DLog(@"still in queue %d", self.numberOfItemsInQueue);
     [self launchNextConnection];
     
 }
@@ -380,24 +414,33 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
     }
 }
 
-- (NSArray *)removePendingConnections
+- (NSArray *)_removePendingRequestsAndCompletions
 {
     self.pause = YES;
-    NSArray *result = [_currentConnections copy];
+    NSArray *result = [NSArray array];
+    for (BDURLConnection *conn in _currentConnections) {
+        NSURLRequest *req = conn.originalRequest;
+        if (req) {
+            id completion = [_requestCompletions objectForKey:conn.originalRequest.requestId];
+
+                NSDictionary *requestAndCompletion = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                      req, BDMDKeyRequest,
+                                                      completion, BDMDKeyCompletion,
+                                                      nil];
+                result = [result arrayByAddingObject:requestAndCompletion];
+        }
+    }
     [self clearQueue];
     self.pause = NO;
     return result;
 }
 
-- (void)queueConnections:(NSArray *)connections
+- (void)_queueRequestsWithCompletions:(NSArray*)requestsAndCompletions
 {
-    for (BDURLConnection *conn in connections){
-        if(![conn isKindOfClass:[BDURLConnection class]]){
-            //not our kind of connection, skip
-            continue;
-        }
-        NSURLRequest * request = conn.originalRequest;
-        [self  queueURLRequest:request completion:conn.completionWithDownloadedData];
+    for (NSDictionary * info in requestsAndCompletions){
+        NSURLRequest *r = [info objectForKey:BDMDKeyRequest];
+        void(^completion)(NSData*) = [info objectForKey:BDMDKeyCompletion];
+        [self queueURLRequest:r completion:completion];
     }
 }
 
