@@ -77,6 +77,11 @@
 - (void) clearQueue;
 
 /**
+ Clear data cache.
+ */
+- (void) clearCache;
+
+/**
  * Cancel a download using download path.
  * @path the download path to dequeue (to cancel.)
  */
@@ -124,7 +129,10 @@
 @property (nonatomic, strong) NSDictionary *httpHeaders;
 @property (nonatomic, assign) NSTimeInterval connectionTimeout;
 @property (nonatomic, assign) NSURLCacheStoragePolicy urlCacheStoragePolicy;
-
+/**
+ If YES, this class will ignore request url which is still in the loading queue.
+ */
+@property (nonatomic, assign) BOOL preventQueuingDuplicateRequest;
 
 
 + (BDMultiDownloader *)shared;

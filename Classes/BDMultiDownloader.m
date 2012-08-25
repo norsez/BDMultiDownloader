@@ -113,8 +113,22 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 - (void)queueRequest:(NSString *)urlPath completion:(void (^)(NSData *))completionWithDownloadedData
 {
     if(!urlPath){
-        ////DLog(@"url is nil. Abort.");
         return;
+    }
+    
+    if (self.preventQueuingDuplicateRequest) {
+        __block int indexFound = NSNotFound;
+        [_loadingQueue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSURLRequest *r = obj;
+            if ([urlPath isEqualToString:r.URL.absoluteString]) {
+                *stop = YES;
+                indexFound = idx;
+            }
+        }];
+        
+        if  (NSNotFound!=indexFound){
+            return;
+        }
     }
     
     NSURL *url = [NSURL URLWithString:urlPath];
@@ -201,6 +215,11 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
         [self _removeConnection:connection];
 
     }    
+}
+
+- (void)clearCache
+{
+    [_dataCache removeAllObjects];
 }
 
 - (void)clearQueue
@@ -359,8 +378,6 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
     }
     
-//    DLog(@"still in queue %d", self.numberOfItemsInQueue);
-    
     [self launchNextConnection];
 }
 
@@ -377,7 +394,6 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
             self.onNetworkError(error);
         }
     }
-//    DLog(@"still in queue %d", self.numberOfItemsInQueue);
     [self launchNextConnection];
     
 }
