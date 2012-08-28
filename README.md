@@ -119,7 +119,7 @@ The convenient method for JSON request utilizes the `NSURLRequest` version call 
 ##Apps using BDMultiDownloader
 
 - [Photosophia iOS for Flickr Groups](http://www.google.com/url?sa=t&rct=j&q=photosophia%20app&source=web&cd=4&cad=rja&ved=0CDYQFjAD&url=http%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fphotosophia-for-flickr-groups%2Fid530161971%3Fmt%3D8&ei=2DA8UPDzEcLsrAed3YGwAQ&usg=AFQjCNEqFsfzipOIXDlFn1gzTmcioNsV2A&sig2=4J9p4wXIWYC-rGLzF5LXbg) (Shameless plug :)
-- Please let me know of your apps so I can extend to this list. Thanks!
+- Please let me know of your apps so I can extend this list. Thanks!
  
 ---
 
