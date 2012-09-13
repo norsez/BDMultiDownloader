@@ -71,6 +71,8 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 
 #pragma mark - NSURLRequest Extension
+#define BDURLRequestRequestIdKey @"BDURLRequestRequestIdKey"
+
 @interface NSURLRequest (BDMultiDownloader)
 - (NSString*)requestId;
 @end
@@ -79,10 +81,11 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 -(NSString *)requestId
 {
-    if ([[self.HTTPMethod uppercaseString] isEqualToString:BDMultiDownloaderMethodPOST]) {
-        return [NSString stringWithFormat:@"%@%@%@",self.URL.absoluteString, self.HTTPMethod, self.HTTPBody];
-    }
-    return self.URL.absoluteString;
+//    if ([[self.HTTPMethod uppercaseString] isEqualToString:BDMultiDownloaderMethodPOST]) {
+//        return [NSString stringWithFormat:@"%@%@%@",self.URL.absoluteString, self.HTTPMethod, self.HTTPBody];
+//    }
+//    return self.URL.absoluteString;
+    return [(NSMutableURLRequest*)self valueForHTTPHeaderField:BDURLRequestRequestIdKey];
 }
 @end
 
@@ -108,7 +111,19 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 @end
 
 @implementation BDMultiDownloader
+static NSUInteger requestId;
 
+- (void)_addRequestId:(NSURLRequest**)request
+{
+    if (![*request isKindOfClass:[NSMutableURLRequest class]]) {
+        *request = [(*request) mutableCopy];
+    }
+    
+    //add request id before sending off
+    NSNumber * rid = [NSNumber numberWithInt:(requestId++)];
+    [(NSMutableURLRequest*) *request addValue:rid.stringValue forHTTPHeaderField:BDURLRequestRequestIdKey];
+    
+}
 
 - (void)queueRequest:(NSString *)urlPath completion:(void (^)(NSData *))completionWithDownloadedData
 {
@@ -145,6 +160,7 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
         request = [NSURLRequest requestWithURL:url cachePolicy:cachePolicy timeoutInterval:timeout];
     }
     
+    [self _addRequestId:&request];
     if (request){
         [_loadingQueue addObject:request];
         [_requestCompletions setObject:[completionWithDownloadedData copy] forKey:request.requestId];
@@ -154,6 +170,8 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 - (void)queueURLRequest:(NSURLRequest *)urlRequest completion:(void (^)(NSData *))completionWithDownloadedData
 {
+    [self _addRequestId:&urlRequest];
+    
     [_loadingQueue addObject:[urlRequest copy] ];
     [_requestCompletions setObject:[completionWithDownloadedData copy] forKey:urlRequest.requestId];
     [self launchNextConnection];
