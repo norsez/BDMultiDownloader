@@ -386,14 +386,7 @@ static NSUInteger requestId;
     void(^completion)(NSData*) = [(BDURLConnection*)connection completionWithDownloadedData];
 
     if (completion) {
-        if (self.completionQueue) {
-            dispatch_async(self.completionQueue, ^{
-                completion(data);
-            });
-        }else {
-            completion(data);
-        }
-
+        completion(data);
     }
     
     [self launchNextConnection];
