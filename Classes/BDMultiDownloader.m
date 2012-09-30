@@ -349,23 +349,8 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 
 - (void)_removeConnection:(BDURLConnection*)conn
 {
-    
-    __block NSUInteger indexToRemove = NSNotFound;
-    
     NSString* requestId = conn.originalRequest.requestId;
     NSAssert(requestId!=nil, @"requestId is nil. Not good.");
-    [_loadingQueue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSURLRequest *req = obj;
-        
-        if  ([req.requestId isEqual:requestId]){
-            indexToRemove = idx;
-            *stop = YES;
-        }
-    }];
-    
-    if (indexToRemove!=NSNotFound) {
-        [_loadingQueue removeObjectAtIndex:indexToRemove];
-    }
     
     [_currentConnections removeObject:conn];
     [_currentConnectionsData removeObjectForKey:requestId];
