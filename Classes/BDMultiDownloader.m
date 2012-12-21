@@ -85,7 +85,8 @@ NSString* const BDMultiDownloaderMethodPOST = @"POST";
 //        return [NSString stringWithFormat:@"%@%@%@",self.URL.absoluteString, self.HTTPMethod, self.HTTPBody];
 //    }
 //    return self.URL.absoluteString;
-    return [(NSMutableURLRequest*)self valueForHTTPHeaderField:BDURLRequestRequestIdKey];
+    NSString* rid = [(NSMutableURLRequest*)self valueForHTTPHeaderField:BDURLRequestRequestIdKey];
+    return rid;
 }
 @end
 
@@ -406,7 +407,7 @@ static NSUInteger requestId;
         }
     }
     [self launchNextConnection];
-    
+//    DLog(@"%@", error);
 }
 
 - (id)init
@@ -424,6 +425,8 @@ static NSUInteger requestId;
         [_dataCache setName:@"data cache"];
         [_dataCache setCountLimit:kMaxCache];
         self.connectionTimeout = kIntervalDefaultTimeout;
+        
+        requestId = 100;
     }
     return self;
 }

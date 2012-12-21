@@ -62,7 +62,9 @@
  @param completionWithJSONObject block returned with JSON object, nil if error.
  @param options NSJSONReadingOptions settings
  */
-- (void) jsonWithRequest:(NSURLRequest*)jsonRequest options:(NSJSONWritingOptions)options completion:(void(^)(id))completionWithJSONObject; 
+- (void) jsonWithRequest:(NSURLRequest*)jsonRequest options:(NSJSONWritingOptions)options completion:(void(^)(id))completionWithJSONObject;
+
+
 
 /**
  * Convenient method for downloading image files. 
