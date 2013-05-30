@@ -401,13 +401,13 @@ static NSUInteger requestId;
     
     [self _removeConnection:(BDURLConnection*)connection];
     if ([error.domain isEqualToString:NSURLErrorDomain] ) {
-        [self clearQueue];
+//        [self clearQueue];
         if (self.onNetworkError) {
             self.onNetworkError(error);
         }
     }
     [self launchNextConnection];
-//    DLog(@"%@", error);
+    DLog(@"%@", error);
 }
 
 - (id)init
