@@ -406,8 +406,15 @@ static NSUInteger requestId;
             self.onNetworkError(error);
         }
     }
+    
+    void(^completion)(NSData*) = [(BDURLConnection*)connection completionWithDownloadedData];
+    if  (completion){
+        completion(nil);
+    }
+
     [self launchNextConnection];
     DLog(@"%@", error);
+    
 }
 
 - (id)init

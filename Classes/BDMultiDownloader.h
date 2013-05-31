@@ -64,8 +64,6 @@
  */
 - (void) jsonWithRequest:(NSURLRequest*)jsonRequest options:(NSJSONWritingOptions)options completion:(void(^)(id))completionWithJSONObject;
 
-
-
 /**
  * Convenient method for downloading image files. 
  * @param urlPath path to the image
