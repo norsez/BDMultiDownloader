@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F1CF097F-4351-4DF6-975B-08F4C41FB4F7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BDMultiDownloader</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BC318C66-B226-4A28-BCE7-19906E8D5337</key>
+		<string>ssh://github.com/matteocrippa/BDMultiDownloader.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BDMultiDownloader.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BC318C66-B226-4A28-BCE7-19906E8D5337</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/matteocrippa/BDMultiDownloader.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BC318C66-B226-4A28-BCE7-19906E8D5337</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BC318C66-B226-4A28-BCE7-19906E8D5337</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BDMultiDownloader</string>
+		</dict>
+	</array>
+</dict>
+</plist>
