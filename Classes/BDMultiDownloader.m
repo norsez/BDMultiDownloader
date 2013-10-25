@@ -328,6 +328,7 @@ static NSUInteger requestId;
     [conn setMIMEType:response.MIMEType];
     [conn setExpectedLength:response.expectedContentLength];
     [conn setProgress:0.0];
+    [conn setSuggestedFilename:response.suggestedFilename];
     
     if (self.onDownloadProgressWithProgressAndSuggestedFilename) {
         self.onDownloadProgressWithProgressAndSuggestedFilename(conn.progress, conn.suggestedFilename);
