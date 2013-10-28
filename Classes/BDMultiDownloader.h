@@ -112,6 +112,9 @@
  the queue which completion block is executed in. If NULL, execute in main queue.
  */
 @property (nonatomic, assign) dispatch_queue_t completionQueue;
+
+//block called when a file is enqueued more than a time
+@property (nonatomic, copy) void (^onDuplicateDownload)(NSString*);
 //block called when encountered error
 @property (nonatomic, copy) void (^onNetworkError)(NSError*);
 //block called to indicates network activity. YES when there's network activity from this class. No otherwise. This can be used to toggle iOS's network status indicator.
