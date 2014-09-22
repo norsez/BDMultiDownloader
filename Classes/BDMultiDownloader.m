@@ -426,7 +426,7 @@ static NSUInteger requestId;
   }
   
   [self launchNextConnection];
-  DLog(@"%@", error);
+  NSLog(@"%@", error);
   
 }
 
